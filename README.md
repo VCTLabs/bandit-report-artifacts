@@ -87,9 +87,10 @@ The `with` portion of the workflow **must** be configured before the action will
 One of the following deployment options must be configured.
 
 | Key                | Value Information                                                                                                                                                                                                                                                                                                                                     | Type   | Required | Default |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------- | -------- |
-| `PROJECT_PATH` | To provide you python location at which this security check needed to be done.                                                                                                 | `with` | **No**  | "." |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------- | -------- |
+| `PROJECT_PATH` | To provide you python location at which this security check needed to be done.                                                                                             | `with` | **No**  | "." |
 | `IGNORE_FAILURE` | This is to ignore the security failures and pass the check.                                                                                                 | `with` | **No**  | false |
+| `BASELINE_FILE` | An optional baseline file. By default, no file is used.                                                                                                 | `with` | **No**  | "" |
 | `CONFIG_FILE` | An optional config file. By default, no file is used.                                                                                                 | `with` | **No**  | "" |
 
 
@@ -98,7 +99,7 @@ One of the following deployment options must be configured.
 
 #### Bandit report (security checks report) 👮‍♂️
 
-The following is an bandit report for a django project. 
+The following is a bandit report for a django project. 
 [learn more about bandit](https://pypi.org/project/bandit/).
 
 ```txt
