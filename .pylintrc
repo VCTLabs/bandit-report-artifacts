@@ -1,0 +1,15 @@
+# https://github.com/cmheisel/pylintrcs/blob/master/pylintrc
+[MASTER]
+ignore=tests
+
+profile=no
+
+jobs=1
+
+suggestion-mode=yes
+
+[REPORTS]
+output-format=colorized
+
+[FORMAT]
+max-line-length=102

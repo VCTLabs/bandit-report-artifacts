@@ -1,5 +1,5 @@
 #
-# Forked from  Joel-hanson/bandit-report-artifacts
+# Forked from  ioggstream/bandit-report-artifacts
 #
 name: "python-bandit with code annotations"
 description: "Github action to find common security issues in Python code and get its report as a artifact."
@@ -15,6 +15,11 @@ inputs:
     description: "This is to ignore the security failures and pass the check."
     required: false
     default: false
+
+  baseline_file:
+    description: "The json baseline data file to use"
+    required: false
+    default: ""
 
   config_file:
     description: "The yaml config file to use"
@@ -34,4 +39,4 @@ runs:
 
 branding:
   icon: "shield"
-  color: "gray-dark"
+  color: "red-dark"

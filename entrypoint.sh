@@ -7,6 +7,9 @@ touch $GITHUB_WORKSPACE/output/security_report.txt
 if [ -f "${INPUT_CONFIG_FILE}" ]; then
     echo "Using config file: ${INPUT_CONFIG_FILE}"
     BANDIT_CONFIG="-c ${INPUT_CONFIG_FILE}"
+elif [ -f "${INPUT_BASELINE_FILE}" ]; then
+    echo "Using baseline file: ${INPUT_BASELINE_FILE}"
+    BANDIT_CONFIG="-b ${INPUT_BASELINE_FILE}"
 fi
 
 bandit ${BANDIT_CONFIG} -r "${INPUT_PROJECT_PATH}" -o "${GITHUB_WORKSPACE}/output/security_report.txt" -f 'txt'

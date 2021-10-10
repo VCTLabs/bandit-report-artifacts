@@ -1,12 +1,14 @@
-from collections import namedtuple
-from pathlib import Path
-import requests
 import json
+
+from pathlib import Path
+
 from subprocess import (  # nosec - module is used cleaning environment variables and with shell=False
     run,
 )
 from datetime import datetime, timezone
 from os import environ
+
+import requests
 
 
 def gh(url, method="GET", data=None, headers=None, token=None):
@@ -69,11 +71,11 @@ def bandit_error(error):
     message = error["reason"]
     try:
         parse(Path(error["filename"]).read_text())
-    except SyntaxError as e:
-        title, _ = e.args
-        end_line = start_line = e.lineno
-        message = e.msg
-    except Exception as e:  # nosec - I really want to ignore further exceptions here.
+    except SyntaxError as exc:
+        title, _ = exc.args  # noqa - need to handle different size tuples
+        end_line = start_line = exc.lineno
+        message = exc.msg
+    except Exception:  # nosec - I really want to ignore further exceptions here.
         # Use default error values
         pass
 

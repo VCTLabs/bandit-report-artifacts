@@ -1,5 +1,5 @@
 ![Security check - Bandit](https://github.com/ioggstream/bandit-report-artifacts/workflows/Bandit%20checks/badge.svg)
-  
+
 This <a href="https://github.com/features/actions">GitHub Action</a> runs
 bandit checks on your code and annotates the interested lines with the
 reported issues.
@@ -87,18 +87,22 @@ The `with` portion of the workflow **must** be configured before the action will
 One of the following deployment options must be configured.
 
 | Key                | Value Information                                                                                                                                                                                                                                                                                                                                     | Type   | Required | Default |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------- | -------- |
-| `PROJECT_PATH` | To provide you python location at which this security check needed to be done.                                                                                                 | `with` | **No**  | "." |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------- | -------- |
+| `PROJECT_PATH` | To provide you python location at which this security check needed to be done.                                                                                             | `with` | **No**  | "." |
 | `IGNORE_FAILURE` | This is to ignore the security failures and pass the check.                                                                                                 | `with` | **No**  | false |
+| `BASELINE_FILE` | An optional baseline file. By default, no file is used.                                                                                                 | `with` | **No**  | "" |
 | `CONFIG_FILE` | An optional config file. By default, no file is used.                                                                                                 | `with` | **No**  | "" |
 
+
+Note: the baseline and config file options are mutually exclusive, ie, choose
+one or the other option (not both).
 
 ---
 
 
 #### Bandit report (security checks report) 👮‍♂️
 
-The following is an bandit report for a django project. 
+The following is a bandit report for a django project. 
 [learn more about bandit](https://pypi.org/project/bandit/).
 
 ```txt
