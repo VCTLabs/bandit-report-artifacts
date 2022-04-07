@@ -105,6 +105,7 @@ def bandit_run_check(results, github_sha=None, dummy=False):
 
     if errors or annotations:
         conclusion = "failure"
+        title = f"Bandit: {len(errors)} errors and {len(annotations)} annotations found"
     if dummy:
         conclusion = "neutral"
         name = "Bandit dummy run"
