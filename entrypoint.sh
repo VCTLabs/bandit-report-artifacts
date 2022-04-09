@@ -19,6 +19,10 @@ if [ -f "${INPUT_BASELINE_FILE}" ]; then
     BANDIT_CONFIG="${BANDIT_CONFIG} -b ${INPUT_BASELINE_FILE}"
 fi
 
+if [ -n "$BANDIT_CONFIG" ]; then
+    echo "Running bandit with extra args: ${BANDIT_CONFIG}"
+fi
+
 bandit ${BANDIT_CONFIG} -r "${INPUT_PROJECT_PATH}" -o "${GITHUB_WORKSPACE}/output/security_report.txt" -f 'txt'
 BANDIT_STATUS="$?"
 
