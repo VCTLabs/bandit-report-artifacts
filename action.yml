@@ -11,13 +11,18 @@ inputs:
     required: false
     default: "."
 
+  exclude_paths:
+    description: "Comma-separated list of paths to exclude (glob supported)."
+    required: false
+    default: ""
+
   ignore_failure:
     description: "This is to ignore the security failures and pass the check."
     required: false
     default: false
 
   baseline_file:
-    description: "The json baseline data file to use"
+    description: "The json baseline data file to use."
     required: false
     default: ""
 

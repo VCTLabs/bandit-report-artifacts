@@ -13,7 +13,7 @@ A list of all issues is shown in the Workflow
 ![](assets/screenshot-issues.png)
 
 The interested LoC are shown in the PR
- 
+
 ![](assets/screenshot-code.png)
 
 
@@ -34,7 +34,7 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest, macos-latest ]
-    name: Python ${{ matrix.os }} 
+    name: Python ${{ matrix.os }}
 
     steps:
     - uses: actions/checkout@v2
@@ -57,9 +57,9 @@ jobs:
 ### Getting Started :airplane:
 
 You can include the action in your workflow to trigger on any event that
- [GitHub actions supports](https://help.github.com/en/articles/events-that-trigger-workflows). 
- If the remote branch that you wish to deploy to doesn't already exist the action will create it for you. 
- Your workflow will also need to include the `actions/checkout` step before this workflow runs 
+ [GitHub actions supports](https://help.github.com/en/articles/events-that-trigger-workflows).
+ If the remote branch that you wish to deploy to doesn't already exist the action will create it for you.
+ Your workflow will also need to include the `actions/checkout` step before this workflow runs
  in order for the deployment to work.
 
 
@@ -76,10 +76,10 @@ on:
 ### Configuration 📁
 
 The `with` portion of the workflow **must** be configured before the action will work.
- You can add these in the `with` section found in the examples above. 
- Any `secrets` must be referenced using the bracket syntax and stored 
- in the GitHub repositories `Settings/Secrets` menu. 
- You can learn more about setting environment variables 
+ You can add these in the `with` section found in the examples above.
+ Any `secrets` must be referenced using the bracket syntax and stored
+ in the GitHub repositories `Settings/Secrets` menu.
+ You can learn more about setting environment variables
  with GitHub actions [here](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstepsenv).
 
 #### Required Setup
@@ -88,21 +88,19 @@ One of the following deployment options must be configured.
 
 | Key                | Value Information                                                                                                                                                                                                                                                                                                                                     | Type   | Required | Default |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------- | -------- |
-| `PROJECT_PATH` | To provide you python location at which this security check needed to be done.                                                                                             | `with` | **No**  | "." |
+| `PROJECT_PATH` | To provide your python location at which this security check needed to be done.                                                                                             | `with` | **No**  | "." |
 | `IGNORE_FAILURE` | This is to ignore the security failures and pass the check.                                                                                                 | `with` | **No**  | false |
+| `EXCLUDE_PATHS` | A list of exclude paths. By default, no exclude paths are used.                                                                                                  | `with` | **No**  | "" |
 | `BASELINE_FILE` | An optional baseline file. By default, no file is used.                                                                                                 | `with` | **No**  | "" |
 | `CONFIG_FILE` | An optional config file. By default, no file is used.                                                                                                 | `with` | **No**  | "" |
 
-
-Note: the baseline and config file options are mutually exclusive, ie, choose
-one or the other option (not both).
 
 ---
 
 
 #### Bandit report (security checks report) 👮‍♂️
 
-The following is a bandit report for a django project. 
+The following is a bandit report for a django project.
 [learn more about bandit](https://pypi.org/project/bandit/).
 
 ```txt
@@ -155,11 +153,11 @@ This can be achieved by add the following to your job
 
 ### License 👨🏻‍💻
 
-The Dockerfile and associated scripts and documentation in this project 
+The Dockerfile and associated scripts and documentation in this project
 are released under the [MIT License](LICENSE).
 
-Container images built with this project include third party materials. 
-As with all Docker images, these likely also contain other software which 
+Container images built with this project include third party materials.
+As with all Docker images, these likely also contain other software which
 may be under other licenses. It is the image user's responsibility to ensure
 that any use of this image complies with any relevant licenses for all
 software contained within.

@@ -9,6 +9,7 @@ on:
     branches: [ "*" ]
   pull_request:
     branches: [ "*" ]
+  workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -23,8 +24,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: python-bandit with code annotations
-      uses: ioggstream/bandit-report-artifacts@v0.0.1
+      uses: ioggstream/bandit-report-artifacts@v0.0.2
       with:
         # This is the path at which the your python project is located in you github repo.
         project_path: main.py
-
