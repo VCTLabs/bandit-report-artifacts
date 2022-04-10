@@ -5,10 +5,11 @@ name: Bandit checks
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
-  push:
-    branches: [ "*" ]
+  workflow_dispatch:
   pull_request:
-    branches: [ "*" ]
+  push:
+    branches:
+      - master
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -25,5 +26,5 @@ jobs:
     - name: python-bandit with code annotations
       uses: ioggstream/bandit-report-artifacts@v0.0.1
       with:
-        # This is the path at which the your python project is located in you github repo.
+        # This is the path at which your python project is located in you github repo.
         project_path: main.py

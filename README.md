@@ -95,9 +95,6 @@ One of the following deployment options must be configured.
 | `CONFIG_FILE` | An optional config file. By default, no file is used.                                                                                                 | `with` | **No**  | "" |
 
 
-Note: the baseline and config file options are mutually exclusive, ie, choose
-one or the other option (not both).
-
 ---
 
 
