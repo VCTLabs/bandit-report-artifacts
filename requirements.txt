@@ -1,2 +1,2 @@
-bandit==1.7.4
+bandit[toml]
 requests
