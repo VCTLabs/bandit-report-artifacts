@@ -1,12 +1,12 @@
 import json
 
+from ast import parse
+from datetime import datetime, timezone
+from os import environ
 from pathlib import Path
-
 from subprocess import (  # nosec - module is used cleaning environment variables and with shell=False
     run,
 )
-from datetime import datetime, timezone
-from os import environ
 
 import requests
 
@@ -17,7 +17,9 @@ def gh(url, method="GET", data=None, headers=None, token=None):
     )
     if token:
         headers["Authorization"] = f"token {token}"
-    return requests.request(method=method, url=url, headers=headers, data=data)
+    return requests.request(
+        method=method, url=url, headers=headers, data=data, timeout=(2, 5),
+    )
 
 
 def to_gh_severity(bandit_severity):
@@ -37,7 +39,11 @@ def run_bandit(args, env=None):
     #  Control environment variables passed to bandit.
     my_args = ["bandit", "-f", "json"] + args
     out = run(  # nosec - this input cannot execute different commands.
-        my_args, shell=False, capture_output=True, env=env or {"PATH": environ["PATH"]},
+        my_args,
+        check=True,
+        shell=False,
+        capture_output=True,
+        env=env or {"PATH": environ["PATH"]},
     )
     if out.returncode < 2:
         # Everything ok
@@ -64,13 +70,12 @@ def bandit_annotation(result):
 
 
 def bandit_error(error):
-    from ast import parse
 
     title = "Error processing file (not a python file?)"
     start_line, end_line = 1, 1
     message = error["reason"]
     try:
-        parse(Path(error["filename"]).read_text())
+        parse(Path(error["filename"]).read_text(encoding='utf-8'))
     except SyntaxError as exc:
         title, _ = exc.args  # noqa - need to handle different size tuples
         end_line = start_line = exc.lineno
