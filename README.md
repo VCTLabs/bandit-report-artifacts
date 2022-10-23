@@ -1,3 +1,4 @@
+[![Test](https://github.com/VCTLabs/bandit-report-artifacts/actions/workflows/test.yml/badge.svg)](https://github.com/VCTLabs/bandit-report-artifacts/actions/workflows/test.yml)
 ![Security check - Bandit](https://github.com/ioggstream/bandit-report-artifacts/workflows/Bandit%20checks/badge.svg)
 
 This <a href="https://github.com/features/actions">GitHub Action</a> runs
