@@ -1,4 +1,9 @@
+[![Test](https://github.com/VCTLabs/bandit-report-artifacts/actions/workflows/test.yml/badge.svg)](https://github.com/VCTLabs/bandit-report-artifacts/actions/workflows/test.yml)
 ![Security check - Bandit](https://github.com/ioggstream/bandit-report-artifacts/workflows/Bandit%20checks/badge.svg)
+
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![Branch Coverage](https://raw.githubusercontent.com/VCTLabs/bandit-report-artifacts/badges/master/pylint-score.svg)](https://github.com/VCTLabs/bandit-report-artifacts)
+
 
 This <a href="https://github.com/features/actions">GitHub Action</a> runs
 bandit checks on your code and annotates the interested lines with the

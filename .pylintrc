@@ -2,7 +2,7 @@
 [MASTER]
 ignore=tests
 
-profile=no
+#profile=no
 
 jobs=1
 
