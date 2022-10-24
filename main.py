@@ -1,3 +1,5 @@
+"""Bandit report action."""
+
 import json
 
 from ast import parse
@@ -11,7 +13,8 @@ from subprocess import (  # nosec - module is used cleaning environment variable
 import requests
 
 
-def gh(url, method="GET", data=None, headers=None, token=None):
+def gh_req(url, method="GET", data=None, headers=None, token=None):
+    """Make a github API request."""
     headers = dict(
         headers or {}, **{"Accept": "application/vnd.github.antiope-preview+json"}
     )
@@ -23,8 +26,11 @@ def gh(url, method="GET", data=None, headers=None, token=None):
 
 
 def to_gh_severity(bandit_severity):
-    # Maps bandit severity to github annotation_level
-    # see: https://docs.github.com/en/rest/reference/checks#create-a-check-run
+    """
+    Maps bandit severity to github annotation_level.
+
+    see: https://docs.github.com/en/rest/reference/checks#create-a-check-run
+    """
     bandit_severity = bandit_severity.lower()
     bandit_severity_map = {
         "low": "notice",
@@ -36,7 +42,7 @@ def to_gh_severity(bandit_severity):
 
 
 def run_bandit(args, env=None):
-    #  Control environment variables passed to bandit.
+    """Control environment variables passed to bandit."""
     my_args = ["bandit", "-f", "json"] + args
     out = run(  # nosec - this input cannot execute different commands.
         my_args,
@@ -52,12 +58,13 @@ def run_bandit(args, env=None):
 
 
 def bandit_annotation(result):
+    """Parse a single result and extract annotation."""
     try:
         end_line = result["line_range"][-1]
     except (KeyError, IndexError):
         end_line = result["line_number"]
 
-    d = dict(
+    data = dict(
         path=result["filename"],
         start_line=result["line_number"],
         end_line=end_line,
@@ -66,11 +73,11 @@ def bandit_annotation(result):
         message="{issue_text} more info {more_info}".format(**result),
     )
 
-    return d
+    return data
 
 
 def bandit_error(error):
-
+    """Parse bandit errors and return a dict."""
     title = "Error processing file (not a python file?)"
     start_line, end_line = 1, 1
     message = error["reason"]
@@ -95,10 +102,15 @@ def bandit_error(error):
 
 
 def bandit_annotations(results):
+    """Parse results and return a list."""
     return [bandit_annotation(result) for result in results["results"]]
 
 
 def bandit_run_check(results, github_sha=None, dummy=False):
+    """
+    Process results for a given hash, return a report including any
+    annotations or errors.
+    """
     annotations = bandit_annotations(results)
     errors = [bandit_error(e) for e in results["errors"]]
     conclusion = "success"
@@ -150,7 +162,7 @@ if __name__ == "__main__":
     bandit_checks = bandit_run_check(
         bandit_results, environ.get("GITHUB_SHA"), dummy=environ.get("DUMMY_ANNOTATION")
     )
-    res = gh(
+    res = gh_req(
         u_post,
         method="POST",
         data=json.dumps(bandit_checks),
