@@ -16,6 +16,6 @@ jobs:
 
     - name: python-bandit with code annotations
       #uses: ioggstream/bandit-report-artifacts@v0.0.2
-      uses: VCTLabs/bandit-report-artifacts@master
+      uses: VCTLabs/bandit-report-artifacts@v0.0.1
       with:
         project_path: main.py
