@@ -36,7 +36,7 @@ jobs:
         else
             EXPORT_VALUE="${TMP_GITHUB_REF}"
         fi
-        echo "##[set-output name=branch;]${EXPORT_VALUE}"
+        echo "branch=${EXPORT_VALUE}" >> $GITHUB_OUTPUT
 
     - name: Set up Python 3.9
       uses: actions/setup-python@v2
@@ -55,8 +55,8 @@ jobs:
       run: |
         rating=$(bash -c 'tox -e lint' | grep 'Your code has been rated at' | cut -f7 -d " ")
         echo "Pylint score: ${rating}"
-        echo "##[set-output name=rating;]${rating}"
-        echo "##[set-output name=path;]${BADGE_PATH}"
+        echo "rating=${rating}" >> $GITHUB_OUTPUT
+        echo "path=${BADGE_PATH}" >> $GITHUB_OUTPUT
 
   badge:
     # Only generate and publish if these conditions are met:
