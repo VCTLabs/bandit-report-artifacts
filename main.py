@@ -44,13 +44,13 @@ def to_gh_severity(bandit_severity):
 def run_bandit(args, env=None):
     """Control environment variables passed to bandit."""
     my_args = ["bandit", "-f", "json"] + args
-    out = run(  # nosec - this input cannot execute different commands.
+    out = run(
         my_args,
-        check=True,
+        check=False,
         shell=False,
         capture_output=True,
         env=env or {"PATH": environ["PATH"]},
-    )
+    )  # nosec - this input cannot execute different commands.
     if out.returncode < 2:
         # Everything ok
         return json.loads(out.stdout)
