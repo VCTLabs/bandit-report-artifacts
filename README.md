@@ -96,7 +96,6 @@ One of the following deployment options must be configured.
 | `PROJECT_PATH` | To provide your python location at which this security check needed to be done.                                                                                             | `with` | **No**  | "." |
 | `IGNORE_FAILURE` | This is to ignore the security failures and pass the check.                                                                                                 | `with` | **No**  | false |
 | `EXCLUDE_PATHS` | A list of exclude paths. By default, no exclude paths are used.                                                                                                  | `with` | **No**  | "" |
-| `BASELINE_FILE` | An optional baseline file. By default, no file is used.                                                                                                 | `with` | **No**  | "" |
 | `CONFIG_FILE` | An optional config file. By default, no file is used.                                                                                                 | `with` | **No**  | "" |
 
 
