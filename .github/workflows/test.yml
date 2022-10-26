@@ -2,8 +2,6 @@ name: Test
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
   workflow_dispatch:
 
 jobs:
@@ -34,6 +32,6 @@ jobs:
     - name: Test canary
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      if: ${{ github.event_name == 'pull_request' }}
       run: |-
         DUMMY_ANNOTATION=true python main.py tests/canary.py LICENSE tests/py2.py
-        #run: tox -e canary
