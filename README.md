@@ -2,7 +2,6 @@
 ![Security check - Bandit](https://github.com/ioggstream/bandit-report-artifacts/workflows/Bandit%20checks/badge.svg)
 
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
-[![Branch Coverage](https://raw.githubusercontent.com/VCTLabs/bandit-report-artifacts/badges/master/pylint-score.svg)](https://github.com/VCTLabs/bandit-report-artifacts)
 
 
 This <a href="https://github.com/features/actions">GitHub Action</a> runs
@@ -45,7 +44,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Security check - Bandit
-      uses: ioggstream/bandit-report-artifacts@v0.0.2
+      uses: VCTLabs/bandit-report-artifacts@v0.0.2  # or master
       with:
         project_path: .
         ignore_failure: true
