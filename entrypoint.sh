@@ -9,6 +9,7 @@ if [ -f "${INPUT_CONFIG_FILE}" ]; then
     BANDIT_CONFIG="-c ${INPUT_CONFIG_FILE}"
 fi
 
+echo "Running bandit with: " ${BANDIT_CONFIG} -r "${INPUT_PROJECT_PATH}" -o "${GITHUB_WORKSPACE}/output/security_report.txt" -f 'txt'
 bandit ${BANDIT_CONFIG} -r "${INPUT_PROJECT_PATH}" -o "${GITHUB_WORKSPACE}/output/security_report.txt" -f 'txt'
 BANDIT_STATUS="$?"
 
