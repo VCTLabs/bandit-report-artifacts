@@ -12,7 +12,7 @@ fi
 bandit ${BANDIT_CONFIG} -r "${INPUT_PROJECT_PATH}" -o "${GITHUB_WORKSPACE}/output/security_report.txt" -f 'txt'
 BANDIT_STATUS="$?"
 
-GITHUB_TOKEN=$INPUT_REPO_TOKEN python /main.py -r $INPUT_PROJECT_PATH
+GITHUB_TOKEN=$INPUT_REPO_TOKEN python /main.py ${BANDIT_CONFIG} -r $INPUT_PROJECT_PATH
 
 if [ $BANDIT_STATUS -eq 0 ]; then
     echo "🔥🔥🔥🔥Security check passed🔥🔥🔥🔥"
