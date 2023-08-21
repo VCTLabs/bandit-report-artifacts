@@ -5,10 +5,10 @@
 
 
 This <a href="https://github.com/features/actions">GitHub Action</a> runs
-bandit checks on your code and annotates the interested lines with the
+bandit checks on your code and annotates the workflow with any
 reported issues.
 
-The action is run in the workflow
+The action is run in the workflow:
 
 ![](assets/screenshot-jobs.png)
 
@@ -16,35 +16,33 @@ A list of all issues is shown in the Workflow
 
 ![](assets/screenshot-issues.png)
 
-The interested LoC are shown in the PR
+If an issue is found in the changed files, the affected LoC are shown in
+ the PR:
 
 ![](assets/screenshot-code.png)
 
 
 ## Usage
 
-To add this Github action to your repository you can either run it copying
-it under your repo or via the Github Action Marketplace, eg:
+To add this Github action to your repository, write a short workflow such
+ as the following, eg:
 
 
 ```yml
 name: Security check - Bandit
 
-on: push
+on:
+  push:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        os: [ ubuntu-latest, macos-latest ]
-    name: Python ${{ matrix.os }}
+    runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
-    - name: Security check - Bandit
-      uses: VCTLabs/bandit-report-artifacts@v0.0.2  # or master
+    - name: Run bandit
+      uses: VCTLabs/bandit-report-artifacts@master
       with:
         project_path: .
         ignore_failure: true
@@ -88,7 +86,9 @@ The `with` portion of the workflow **must** be configured before the action will
 
 #### Required Setup
 
-One of the following deployment options must be configured.
+Use any of the following deployment options to configure the workflow;
+note the last two options are mutually exclusive, ie, use only one of
+`exclude_paths` or `config_file`.
 
 | Key                | Value Information                                                                                                                                                                                                                                                                                                                                     | Type   | Required | Default |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------- | -------- |
