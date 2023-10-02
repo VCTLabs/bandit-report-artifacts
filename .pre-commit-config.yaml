@@ -18,7 +18,7 @@ repos:
       - id: check-json
       - id: check-yaml
       #  exclude: '.pep8speaks.yml'
-  - repo: https://gitlab.com/pycqa/flake8
+  - repo: https://github.com/PyCQA/flake8
     rev: 3.9.2
     hooks:
       - id: flake8
