@@ -1,18 +1,25 @@
-name: Bandit checks
+name: Security check - Bandit
 
 on:
   push:
     branches: [ "*" ]
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-20.04
+    permissions:
+      checks: write # for bandit-report-artifacts to publish the checks
+      contents: read # for actions/checkout to fetch code
+      security-events: write # for bandit-report-artifacts to upload results
+      actions: read # only on private (maybe?) required to get the Action run status
 
     steps:
     - uses: actions/checkout@v3
 
-    - name: python-bandit with code annotations
-      #uses: ioggstream/bandit-report-artifacts@v0.0.2
+    - name: Run bandit
       uses: VCTLabs/bandit-report-artifacts@master
       with:
         project_path: main.py

@@ -1,4 +1,4 @@
-FROM python:3.9-alpine3.16
+FROM python:3.11-alpine3.17
 
 RUN apk --no-cache add git bash
 
