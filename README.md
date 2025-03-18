@@ -1,5 +1,5 @@
 [![Test](https://github.com/VCTLabs/bandit-report-artifacts/actions/workflows/test.yml/badge.svg)](https://github.com/VCTLabs/bandit-report-artifacts/actions/workflows/test.yml)
-![Security check - Bandit](https://github.com/ioggstream/bandit-report-artifacts/workflows/Bandit%20checks/badge.svg)
+[![Security check - Bandit](https://github.com/VCTLabs/bandit-report-artifacts/actions/workflows/bandit.yml/badge.svg)](https://github.com/VCTLabs/bandit-report-artifacts/actions/workflows/bandit.yml)
 
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 
@@ -123,23 +123,23 @@ Test results:
 --------------------------------------------------
 
 Test results:
-	No issues identified.
+        No issues identified.
 
 Code scanned:
-	Total lines of code: 138
-	Total lines skipped (#nosec): 0
+        Total lines of code: 138
+        Total lines skipped (#nosec): 0
 
 Run metrics:
-	Total issues (by severity):
-		Undefined: 0.0
-		Low: 0.0
-		Medium: 0.0
-		High: 0.0
-	Total issues (by confidence):
-		Undefined: 0.0
-		Low: 0.0
-		Medium: 0.0
-		High: 0.0
+        Total issues (by severity):
+                Undefined: 0.0
+                Low: 0.0
+                Medium: 0.0
+                High: 0.0
+        Total issues (by confidence):
+                Undefined: 0.0
+                Low: 0.0
+                Medium: 0.0
+                High: 0.0
 Files skipped (0):
 ```
 
