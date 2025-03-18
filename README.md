@@ -36,10 +36,10 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Run bandit
       uses: VCTLabs/bandit-report-artifacts@master
@@ -49,7 +49,7 @@ jobs:
 
     # This is optional
     - name: Security check report artifacts
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: Security report
         path: output/security_report.txt
@@ -94,7 +94,7 @@ note the last two options are mutually exclusive, ie, use only one of
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------- | -------- |
 | `PROJECT_PATH` | To provide your python location at which this security check needed to be done.                                                                                             | `with` | **No**  | "." |
 | `IGNORE_FAILURE` | This is to ignore the security failures and pass the check.                                                                                                 | `with` | **No**  | false |
-| `EXCLUDE_PATHS` | A list of exclude paths. By default, no exclude paths are used.                                                                                                  | `with` | **No**  | "" |
+| `EXCLUDE_PATHS` | A comma separated string of exclude paths. By default, no exclude paths are used.                                                                         | `with` | **No**  | "" |
 | `CONFIG_FILE` | An optional config file. By default, no file is used.                                                                                                 | `with` | **No**  | "" |
 
 
@@ -143,7 +143,7 @@ Run metrics:
 Files skipped (0):
 ```
 
-This can be achieved by add the following to your job
+This can be achieved by adding the following to your job.
 
 ```yml
     - name: Security check report artifacts
