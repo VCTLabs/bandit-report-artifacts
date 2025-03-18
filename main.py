@@ -64,14 +64,14 @@ def bandit_annotation(result):
     except (KeyError, IndexError):
         end_line = result["line_number"]
 
-    data = dict(
-        path=result["filename"],
-        start_line=result["line_number"],
-        end_line=end_line,
-        annotation_level=to_gh_severity(result["issue_severity"]),
-        title="Test: {test_name} id: {test_id}".format(**result),
-        message="{issue_text} more info {more_info}".format(**result),
-    )
+    data = {
+        "path": result["filename"],
+        "start_line": result["line_number"],
+        "end_line": end_line,
+        "annotation_level": to_gh_severity(result["issue_severity"]),
+        "title": "Test: {test_name} id: {test_id}".format(**result),
+        "message": "{issue_text} more info {more_info}".format(**result),
+    }
 
     return data
 
@@ -83,22 +83,22 @@ def bandit_error(error):
     message = error["reason"]
     try:
         parse(Path(error["filename"]).read_text(encoding='utf-8'))
-    except SyntaxError as exc:
-        title, _ = exc.args  # noqa - need to handle different size tuples
+    except SyntaxError as exc:  # need to handle different size tuples in the following
+        title, _ = exc.args  # noqa # pylint: disable=W0632
         end_line = start_line = exc.lineno
         message = exc.msg
-    except Exception:  # nosec - I really want to ignore further exceptions here.
+    except ValueError as exc:  # nosec - I really want to ignore further exceptions here.
         # Use default error values
-        pass
+        print(f"Parse error: {exc}")
 
-    return dict(
-        path=error["filename"],
-        start_line=start_line,
-        end_line=end_line,
-        annotation_level="failure",
-        title=title,
-        message=message,
-    )
+    return {
+        "path": error["filename"],
+        "start_line": start_line,
+        "end_line": end_line,
+        "annotation_level": "failure",
+        "title": title,
+        "message": message,
+    }
 
 
 def bandit_annotations(results):
