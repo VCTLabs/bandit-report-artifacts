@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
 
     - name: Run bandit
       uses: VCTLabs/bandit-report-artifacts@master
@@ -49,7 +49,7 @@ jobs:
 
     # This is optional
     - name: Security check report artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v7
       with:
         name: Security report
         path: output/security_report.txt
