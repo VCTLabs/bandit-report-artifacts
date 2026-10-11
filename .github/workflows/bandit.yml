@@ -6,12 +6,18 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
 
     - name: python-bandit with code annotations
       uses: ./
       with:
         project_path: main.py
+
+    - name: Upload report
+      uses: actions/upload-artifact@v7
+      with:
+        name: bandit-report
+        path: output/*.txt

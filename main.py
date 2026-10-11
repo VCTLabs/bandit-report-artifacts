@@ -6,9 +6,9 @@ from ast import parse
 from datetime import datetime, timezone
 from os import environ
 from pathlib import Path
-from subprocess import (  # nosec - module is used cleaning environment variables and with shell=False
-    run,
-)
+
+# module is used after cleaning environment variables and with shell=False
+from subprocess import run  # nosec B404
 
 import requests
 
@@ -47,10 +47,11 @@ def run_bandit(args, env=None):
     out = run(
         my_args,
         check=False,
-        shell=False,
+        shell=False,  # nosec B603
         capture_output=True,
         env=env or {"PATH": environ["PATH"]},
-    )  # nosec - this input cannot execute different commands.
+        # this input cannot execute different commands.
+    )
     if out.returncode < 2:
         # Everything ok
         return json.loads(out.stdout)
@@ -87,7 +88,8 @@ def bandit_error(error):
         title, _ = exc.args  # noqa # pylint: disable=W0632
         end_line = start_line = exc.lineno
         message = exc.msg
-    except ValueError as exc:  # nosec - I really want to ignore further exceptions here.
+    except ValueError as exc:  # nosec
+        # I really want to ignore further exceptions here
         # Use default error values
         print(f"Parse error: {exc}")
 
